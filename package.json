@@ -5,12 +5,11 @@
     "main": "index.js",
     "scripts": {
         "dev": "NODE_ENV=development nodemon ./bin/www",
-        "grunt": "grunt",
-        "watch-node": "nodemon ./dist/server.js -w dist",
-        "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"npm run grunt\"  \"npm run watch-node\"",
-        "start": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"npm run grunt\"  \"node dist/server.js\"",
-        "serve": "ts-node-dev --respawn --transpileOnly src/server.ts",
-        "prod": "tsc && node ./dist/server.js"
+        "debug": "ts-node-dev  --inspect --respawn --transpileOnly src/server.ts",
+        "ts-node-dev": "ts-node-dev",
+        "watch": "ts-node-dev --respawn --transpileOnly src/server.ts",
+        "prod": "tsc && node ./dist/server.js",
+        "build": "tsc"
     },
     "dependencies": {
         "@types/mongoose": "^5.3.26",
@@ -34,7 +33,7 @@
         "@types/node": "^10.12.18",
         "@types/shelljs": "^0.8.1",
         "fs-extra": "^7.0.1",
-        "grunt": "^1.0.3",
+        "grunt": "^1.0.4",
         "grunt-contrib-copy": "^1.0.0",
         "grunt-contrib-watch": "^1.1.0",
         "grunt-shell": "^3.0.1",

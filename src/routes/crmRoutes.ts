@@ -1,4 +1,5 @@
 import { Request, Response, } from "express";
+import * as path from "path";
 
 import { ContactController } from "../controllers/crmController";
 
@@ -8,9 +9,10 @@ export class Routes {
     public routes(app: any): void {
         app.route("/")
             .get((req: Request, res: Response) => {
-                res.status(200).send({
-                    msg: "GET request successfully"
-                });
+                // res.status(200).send({
+                //     msg: "GET request successfully"
+                // });
+                res.status(200).sendFile(path.join(__dirname, '../public', 'index.html'));
             });
 
         app.route('/contact')
