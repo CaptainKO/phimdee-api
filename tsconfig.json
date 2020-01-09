@@ -3,10 +3,13 @@
         "module": "commonjs",
         "esModuleInterop": false,
         "noImplicitAny": true,
+        "baseUrl": ".",
         "suppressImplicitAnyIndexErrors": true,
         "experimentalDecorators": true,
+        "emitDecoratorMetadata":true,
         "noUnusedLocals": false,
         "noUnusedParameters": false,
+        "moduleResolution": "Node",
         "target": "es6",
         "outDir": "dist",
         "sourceMap": false,
@@ -14,24 +17,15 @@
         "lib": [
             "es2017.object",
             "es2015",
-            "es2017"
-        ]
+            "es2017",
+        ],
+        "paths": {
+            "@entity/*": ["src/entity/*"],
+            "@middlewares/*": ["src/middlewares/*"]
+        }
     },
-
-    "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
-    "baseUrl": ".",
-    "paths": {
-        "@public/*": ["public/*"],
-        "@controllers/*": ["controllers/*"],
-        "@models/*": ["models/*"],
-        "@routes/*": ["routes/*"],
-        "*": [
-            "node_modules/",
-            "src/types/*"
-        ]
-    },
     "rootDir": "src",
     "watch": true,
     "include": [

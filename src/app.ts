@@ -1,12 +1,12 @@
 import * as express from "express";
-import { Routes } from "./routes/crmRoutes";
 
 import applyMiddleware from "./util/applyMiddleware";
-import middleware from "./middleware";
-import { errorHandlers } from "./middleware/errorHandlers";
+import middleware from "./middlewares";
+import { errorHandlers } from "./middlewares/errorHandlers";
+import { Routes } from "./routes";
 class App {
   public app: express.Application;
-  public routePrv: Routes = new Routes();
+  public routePrv= Routes;
   constructor() {
     this.app = express();
     this._config();

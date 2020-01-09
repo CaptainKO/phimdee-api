@@ -6,10 +6,9 @@ import compression = require("compression");
 import cookieParser = require('cookie-parser');
 import bodyParser = require("body-parser");
 import logger = require('morgan');
-import * as jsonwebtoken from "jsonwebtoken";
 
 // app
-import { IS_PROD, SESSION_SECRET, DB_URI, JWT_SECRET } from "../environment";
+import { IS_PROD } from "../environment";
 
 type Handle = (router: Router) => void;
 

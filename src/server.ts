@@ -6,4 +6,4 @@ createConnection().then(() => {
     app.listen(PORT, () => {
         console.log('Express server listening on port ' + PORT);
     });
-});
+}).catch(console.log);
