@@ -1,6 +1,9 @@
 import app from "./app";
 const PORT = 3000;
+import { createConnection } from "typeorm";
 
-app.listen(PORT, () => {
-    console.log('Express server listening on port ' + PORT);
+createConnection().then(() => {
+    app.listen(PORT, () => {
+        console.log('Express server listening on port ' + PORT);
+    });
 });
