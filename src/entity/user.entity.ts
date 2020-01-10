@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcryptjs';
-import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique, UpdateDateColumn, AfterLoad, BeforeUpdate } from 'typeorm';
+import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique, UpdateDateColumn, AfterLoad, BeforeUpdate, OneToMany } from 'typeorm';
 
 @Entity()
 @Unique(['email'])
@@ -58,4 +58,5 @@ export class User {
   async comparePassword(password: string) {
     return bcrypt.compare(password, this.password);
   }
+
 }

@@ -3,6 +3,7 @@ declare namespace Express {
   // add more properties to requests
   export interface Request {
     payload?: any;
+    user: User;
   }
 
   
@@ -18,8 +19,8 @@ declare namespace Express {
   /**
    * overwrite user interfaces for request
    */
-  // type UserModel = import('../models/user.model').IUser
-  // export interface User extends UserModel{}
+  type IUser = import('../entity/user.entity').User
+  export interface User extends IUser{}
 
   /**
    * overwrite multer interface

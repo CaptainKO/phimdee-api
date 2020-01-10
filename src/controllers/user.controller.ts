@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { validate } from "class-validator";
 
-import { User } from "../entity/User";
+import { User } from "../entity/user.entity";
+import { Http401Error } from "src/util/httpErrors";
 
 class UserController{
 
@@ -109,7 +110,8 @@ static deleteUser = async (req: Request, res: Response) => {
   try {
     user = await userRepository.findOneOrFail(id);
   } catch (error) {
-    res.status(404).send("User not found");
+    // res.status(404).send("User not found");
+    throw new Http401Error("loi")
     return;
   }
   userRepository.delete(id);
