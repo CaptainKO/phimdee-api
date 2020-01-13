@@ -5,8 +5,9 @@
     "scripts": {
         "dev": "nodemon",
         "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-        "migrate:gen": "npm run typeorm migration:generate -- -n",
-        "migrate:run": "npm run typeorm migration:run",
+        "mig:gen": "npm run typeorm migration:generate -- -n",
+        "mig:run": "npm run typeorm migration:run",
+        "ent": "npm run typeorm entity:create -- -n",
         "debug": "ts-node-dev  -r tsconfig-paths/register  --inspect --respawn --transpileOnly src/server.ts",
         "ts-node-dev": "ts-node-dev",
         "start": "npm run watch",
