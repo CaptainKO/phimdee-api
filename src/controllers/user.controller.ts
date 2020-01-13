@@ -4,6 +4,7 @@ import { validate } from "class-validator";
 
 import { User } from "../entity/user.entity";
 import { Http401Error } from "src/util/httpErrors";
+import NotFoundException from "@exceptions/NotFoundException";
 
 class UserController {
 
@@ -29,7 +30,7 @@ class UserController {
         select: ["id", "username", "role"] //We dont want to send the password on response
       });
     } catch (error) {
-      res.status(404).send("User not found");
+      throw new NotFoundException("User Not Found");
     }
   };
 

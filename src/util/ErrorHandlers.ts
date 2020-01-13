@@ -10,6 +10,7 @@ export const notFoundError = () => {
 export const clientError = (err: any, res: Response, next: NextFunction) => {
   if (err instanceof HttpException) {
     console.warn(err);
+    console.log('called')
     res.status(err.status).sendMessage(err.message);
   } else {
     next(err);

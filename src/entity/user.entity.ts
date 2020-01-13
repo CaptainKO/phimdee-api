@@ -1,11 +1,11 @@
-import * as bcrypt from 'bcryptjs';
+import { compare, genSalt, hash } from 'bcryptjs';
 import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique, UpdateDateColumn, AfterLoad, BeforeUpdate, OneToMany, BaseEntity } from 'typeorm';
 
 @Entity()
 @Unique(['email'])
 export class User extends BaseEntity {
 
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
@@ -51,12 +51,12 @@ export class User extends BaseEntity {
   updatedDate: Date;
 
   async hashPassword(newPassword: string) {
-    this.salt = await bcrypt.genSalt(8);
-    return await bcrypt.hash(newPassword, this.salt);
+    this.salt = await genSalt(8);
+    return await hash(newPassword, this.salt);
   }
 
   async comparePassword(password: string) {
-    return bcrypt.compare(password, this.password);
+    return compare(password, this.password);
   }
 
 }

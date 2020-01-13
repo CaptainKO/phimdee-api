@@ -1,7 +1,8 @@
 import { Router } from "express";
-import UserController from "../../controllers/user.controller";
-import { checkJwt } from "../../middlewares/checkJwt";
-import { checkRole } from "../../middlewares/checkRole";
+import UserController from "@controllers/user.controller";
+import { checkJwt } from "@middlewares/checkJwt";
+import { checkRole } from "@middlewares/checkRole";
+import validationMiddleware from "@middlewares/validation.middleware";
 
 export const UserRouter = Router();
 
@@ -16,7 +17,10 @@ UserRouter.get(
 );
 
 //Create a new user
-UserRouter.post("/", [checkJwt, checkRole(["ADMIN"])], UserController.newUser);
+UserRouter.post("/", 
+[checkJwt, checkRole(["ADMIN"])], 
+// validationMiddleware(CreatePostDto),
+UserController.newUser);
 
 //Edit one user
 UserRouter.patch(
