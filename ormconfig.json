@@ -6,6 +6,7 @@
    "password": "phimdee2828@",
    "database": "phimdee1",
    "synchronize": true,
+   "migrationsRun": true,
    "logging": false,
    "entities": [
       "src/entity/**/*.ts"
