@@ -3,6 +3,7 @@ import {
   handleCookies,
   handleBodyRequest,
   handleCompression,
+  useLogger,
 } from "./common";
 
 export default [
@@ -10,4 +11,5 @@ export default [
   handleCompression,
   handleCookies,
   handleBodyRequest,
+  useLogger,
 ];

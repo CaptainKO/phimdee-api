@@ -21,7 +21,14 @@
         ],
         "paths": {
             "@entity/*": ["src/entity/*"],
-            "@middlewares/*": ["src/middlewares/*"]
+            "@middlewares": ["src/middlewares/index"],
+            "@middlewares/*": ["src/middlewares/*"],
+            "@exceptions": ["src/exceptions/index"],
+            "@exceptions/*": ["src/exceptions/*"],
+            "@controllers": ["src/exceptions/index"],
+            "@controllers/*": ["src/controllers/*"],
+            "@routes": ["src/routes/index"],
+            "@routes/*": ["src/routes/*"],
         }
     },
     "sourceMap": true,
