@@ -6,27 +6,55 @@
     "jsRules": {},
     "rules": {
         "tslint:recommended": true,
-        "array-type":false,
-        "trailing-comma": [ true ],
-        "only-arrow-functions": [false],
-        "no-empty": [false],
-        "no-console": [false],
-        "quotemark": [false],
-        "object-literal-sort-keys": [false],
-        "object-literal-key-quotes": [false],
-        "ordered-imports": [false],
-        "no-debugger": [false],
-        "no-trailing-whitespace": [false],
-        "no-var-requires": [false],
-        "eofline":[false],
-        "no-string-literal": [false],
-        "no-shadowed-variable":false,
-        "no-empty-interface":false,
-        "no-angle-bracket-type-assertion":false,
-        "triple-equals":false,
-        "arrow-parens":false,
-        "max-classes-per-file":false
+        "array-type": false,
+        "trailing-comma": [
+            true
+        ],
+        "only-arrow-functions": [
+            false
+        ],
+        "no-empty": [
+            false
+        ],
+        "no-console": [
+            false
+        ],
+        "quotemark": [
+            false
+        ],
+        "object-literal-sort-keys": [
+            false
+        ],
+        "object-literal-key-quotes": [
+            false
+        ],
+        "ordered-imports": [
+            false
+        ],
+        "no-debugger": [
+            false
+        ],
+        "no-trailing-whitespace": [
+            false
+        ],
+        "no-var-requires": [
+            false
+        ],
+        "eofline": [
+            false
+        ],
+        "no-string-literal": [
+            false
+        ],
+        "no-shadowed-variable": false,
+        "no-empty-interface": false,
+        "no-angle-bracket-type-assertion": false,
+        "triple-equals": false,
+        "arrow-parens": false,
+        "max-classes-per-file": false,
+        "member-access": false,
+        "member-ordering": false,
+        "variable-name": false
     },
     "rulesDirectory": []
-
 }

@@ -1,6 +1,6 @@
 import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-@Entity()
+@Entity({ name: 'pd_movies' })
 
 export class Movie extends BaseEntity {
 

@@ -1,5 +1,17 @@
 import { compare, genSalt, hash } from 'bcryptjs';
-import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique, UpdateDateColumn, AfterLoad, BeforeUpdate, OneToMany, BaseEntity } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  Unique,
+  UpdateDateColumn,
+  AfterLoad,
+  BeforeUpdate,
+  OneToMany,
+  BaseEntity
+} from 'typeorm';
 
 @Entity({ name: 'pd_users' })
 @Unique(['email'])
@@ -37,7 +49,7 @@ export class User extends BaseEntity {
   private async encryptPassword() {
     if (this._password !== this.password) {
       this.password = await this.hashPassword(this.password);
-      this.loadTempPassword()
+      this.loadTempPassword();
     }
   }
 
