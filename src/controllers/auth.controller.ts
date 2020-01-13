@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
-import { getRepository } from "typeorm";
 import { validate } from "class-validator";
 
 import { User } from "../entity/user.entity";
 import { JWT_SECRET } from "../environment";
+import UserRepository from "src/repository/user.repository";
 
 class AuthController {
   static login = async (req: Request, res: Response) => {
@@ -15,10 +15,9 @@ class AuthController {
     }
 
     //Get user from database
-    const userRepository = getRepository(User);
     let user: User;
     try {
-      user = await userRepository.findOneOrFail({ where: { username } });
+      user = await UserRepository.findOneOrFail({ where: { username } });
     } catch (error) {
       res.status(401).send();
     }
@@ -40,7 +39,7 @@ class AuthController {
     res.send(token);
   };
 
-  static changePassword = async (req: Request, res: Response) => {
+  static async changePassword (req: Request, res: Response){
     //Get ID from JWT
     const id = res.locals.jwtPayload.userId;
 
@@ -51,21 +50,20 @@ class AuthController {
     }
 
     //Get user from the database
-    const userRepository = getRepository(User);
     let user: User;
     try {
-      user = await userRepository.findOneOrFail(id);
+      user = await UserRepository.findOneOrFail(id);
     } catch (id) {
       res.status(401).send();
     }
 
-    //Check if old password matchs
+    //Check if old password matches
     if (!user.comparePassword(oldPassword)) {
       res.status(401).send();
       return;
     }
 
-    //Validate de model (password lenght)
+    //Validate de model (password length)
     user.hashPassword(newPassword);
     const errors = await validate(user);
     if (errors.length > 0) {
@@ -74,7 +72,7 @@ class AuthController {
     }
     //Hash the new password and save
     // user.hashPassword();
-    userRepository.save(user);
+    UserRepository.save(user);
 
     res.status(204).send();
   };
