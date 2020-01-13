@@ -1,7 +1,7 @@
 import { compare, genSalt, hash } from 'bcryptjs';
 import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique, UpdateDateColumn, AfterLoad, BeforeUpdate, OneToMany, BaseEntity } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'pd_users' })
 @Unique(['email'])
 export class User extends BaseEntity {
 
