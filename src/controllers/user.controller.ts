@@ -1,14 +1,23 @@
-import { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import { getRepository } from "typeorm";
 import { validate } from "class-validator";
 
 import { User } from "../entity/user.entity";
 import { Http401Error } from "src/util/httpErrors";
 import NotFoundException from "@exceptions/NotFoundException";
+import { BaseController } from "./base.controller";
+import { checkJwt } from "@middlewares/checkJwt";
+import { checkRole } from "@middlewares/checkRole";
 
-class UserController {
+class UserController extends BaseController {
 
-  static listAll = async (req: Request, res: Response) => {
+  public initialize(router: Router) {
+    // console.log(this.listAll)
+    router.get('users', [checkJwt, checkRole(["ADMIN"])], this.listAll)
+    router.get('user/:id', this.getOneById)
+  }
+
+  async listAll(req: Request, res: Response) {
     //Get users from database
     const userRepository = getRepository(User);
     const users = await userRepository.find({
@@ -19,7 +28,7 @@ class UserController {
     res.send(users);
   };
 
-  static getOneById = async (req: Request, res: Response) => {
+  async getOneById(req: Request, res: Response) {
     //Get the ID from the url
     const { id } = req.params;
 
@@ -34,7 +43,7 @@ class UserController {
     }
   };
 
-  static newUser = async (req: Request, res: Response) => {
+  async newUser(req: Request, res: Response) {
     //Get parameters from the body
     let { username, password, role } = req.body;
     let user = new User();
@@ -64,7 +73,7 @@ class UserController {
     res.status(201).send("User created");
   };
 
-  static editUser = async (req: Request, res: Response) => {
+  async editUser(req: Request, res: Response) {
     //Get the ID from the url
     const id = req.params.id;
 
@@ -102,7 +111,7 @@ class UserController {
     res.status(204).send();
   };
 
-  static deleteUser = async (req: Request, res: Response) => {
+  async deleteUse(req: Request, res: Response) {
     //Get the ID from the url
     const id = req.params.id;
 

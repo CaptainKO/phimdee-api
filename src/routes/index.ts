@@ -1,8 +1,16 @@
-import { APIRouter } from "./api";
 import { Application } from "express";
+import { Router } from "express";
+import CONTROLLERS from "@controllers";
+import applyControllers from "src/util/applyControllers";
 
+export const APIRouter = Router();
+applyControllers(CONTROLLERS, APIRouter);
 export class Routes {
-  public static routes(app: Application): void {
-    app.use('/api/v1', APIRouter)
+  APIRouter = Router();
+  constructor() {
+    applyControllers(CONTROLLERS, this.APIRouter);
+  }
+  public routes(app: Application): void {
+    app.use('/api/v1', this.APIRouter)
   }
 }

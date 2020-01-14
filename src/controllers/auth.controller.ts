@@ -1,13 +1,19 @@
-import { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import * as jwt from "jsonwebtoken";
 import { getRepository } from "typeorm";
 import { validate } from "class-validator";
 
 import { User } from "../entity/user.entity";
 import { JWT_SECRET } from "../environment";
+import { BaseController } from "./base.controller";
 
-class AuthController {
-  static login = async (req: Request, res: Response) => {
+class AuthController extends BaseController {
+
+  initialize(router: Router) {
+    router.post('/auth/login', this.login);
+    router.post('/auth/change-password', this.changePassword);
+  }
+  async login(req: Request, res: Response) {
     //Check if username and password are set
     let { username, password } = req.body;
     if (!(username && password)) {
@@ -40,7 +46,7 @@ class AuthController {
     res.send(token);
   };
 
-  static changePassword = async (req: Request, res: Response) => {
+  async changePassword(req: Request, res: Response) {
     //Get ID from JWT
     const id = res.locals.jwtPayload.userId;
 
