@@ -8,6 +8,8 @@ export const {
   DB_URI,
   JWT_SECRET = 'secret',
   SESSION_SECRET = 'session-secret',
+  FFMPEG_PATH,
+  FFPROBE_PATH
 } = process.env;
 
 

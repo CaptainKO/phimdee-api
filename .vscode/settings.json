@@ -1,5 +1,9 @@
 {
   "cSpell.words": [
-    "middlewares"
+    "FFPROBE",
+    "middlewares",
+    "respawn",
+    "tspath",
+    "typeorm"
   ]
 }
