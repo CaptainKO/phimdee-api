@@ -22,8 +22,8 @@ class App {
     applyMiddleware(errorHandlers, this.app);
   }
 
-  private _configDatabase(): Promise<Connection|void> {
-    return createConnection().catch(console.error)
+  private _configDatabase() {
+    return createConnection()
   }
 }
 export default new App().app;
