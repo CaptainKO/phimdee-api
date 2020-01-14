@@ -1,11 +1,11 @@
 import { Request, Response, Router } from "express";
 import * as jwt from "jsonwebtoken";
-import { getRepository } from "typeorm";
 import { validate } from "class-validator";
 
 import { User } from "../entity/user.entity";
 import { JWT_SECRET } from "../environment";
 import { BaseController } from "./base.controller";
+import userRepository from "src/repository/user.repository";
 
 class AuthController extends BaseController {
 
@@ -21,7 +21,6 @@ class AuthController extends BaseController {
     }
 
     //Get user from database
-    const userRepository = getRepository(User);
     let user: User;
     try {
       user = await userRepository.findOneOrFail({ where: { username } });
@@ -57,7 +56,6 @@ class AuthController extends BaseController {
     }
 
     //Get user from the database
-    const userRepository = getRepository(User);
     let user: User;
     try {
       user = await userRepository.findOneOrFail(id);
@@ -65,13 +63,13 @@ class AuthController extends BaseController {
       res.status(401).send();
     }
 
-    //Check if old password matchs
+    //Check if old password matches
     if (!user.comparePassword(oldPassword)) {
       res.status(401).send();
       return;
     }
 
-    //Validate de model (password lenght)
+    //Validate de model (password length)
     user.hashPassword(newPassword);
     const errors = await validate(user);
     if (errors.length > 0) {

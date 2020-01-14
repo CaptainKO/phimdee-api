@@ -8,6 +8,7 @@ import NotFoundException from "@exceptions/NotFoundException";
 import { BaseController } from "./base.controller";
 import { checkJwt } from "@middlewares/checkJwt";
 import { checkRole } from "@middlewares/checkRole";
+import userRepository from "src/repository/user.repository";
 
 class UserController extends BaseController {
 
@@ -19,9 +20,8 @@ class UserController extends BaseController {
 
   async listAll(req: Request, res: Response) {
     //Get users from database
-    const userRepository = getRepository(User);
     const users = await userRepository.find({
-      select: ["id", "username", "role"] //We dont want to send the passwords on response
+      select: ["id", "username", "role"] //We don't want to send the passwords on response
     });
 
     //Send the users object
@@ -33,10 +33,9 @@ class UserController extends BaseController {
     const { id } = req.params;
 
     //Get the user from database
-    const userRepository = getRepository(User);
     try {
       const user = await userRepository.findOneOrFail(id, {
-        select: ["id", "username", "role"] //We dont want to send the password on response
+        select: ["id", "username", "role"] //We don't want to send the password on response
       });
     } catch (error) {
       throw new NotFoundException("User Not Found");
@@ -51,7 +50,7 @@ class UserController extends BaseController {
     user.password = password;
     user.role = role;
 
-    //Validade if the parameters are ok
+    //Validate if the parameters are ok
     const errors = await validate(user);
     if (errors.length > 0) {
       res.status(400).send(errors);
@@ -81,7 +80,6 @@ class UserController extends BaseController {
     const { username, role } = req.body;
 
     //Try to find user on database
-    const userRepository = getRepository(User);
     let user;
     try {
       user = await userRepository.findOneOrFail(id);
@@ -115,7 +113,6 @@ class UserController extends BaseController {
     //Get the ID from the url
     const id = req.params.id;
 
-    const userRepository = getRepository(User);
     let user: User;
     try {
       user = await userRepository.findOneOrFail(id);
