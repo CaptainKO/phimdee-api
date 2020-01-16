@@ -53,6 +53,12 @@ export class User extends BaseEntity {
     }
   }
 
+  @BeforeInsert()
+  private async encryptPasswordBeforeInsert() {
+    this.password = await this.hashPassword(this.password);
+    this.loadTempPassword();
+  }
+
   @Column()
   salt: string;
 
@@ -61,6 +67,7 @@ export class User extends BaseEntity {
 
   @UpdateDateColumn()
   updatedDate: Date;
+
 
   private async hashPassword(newPassword: string) {
     this.salt = await genSalt(8);
