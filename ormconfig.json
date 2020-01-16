@@ -1,8 +1,9 @@
 {
    "type": "mysql",
-   "host": "localhost",
+   "host": "104.198.117.246",
    "port": 3306,
    "username": "root",
+   "password": "phimdee2828@",
    "database": "phimdee1",
    "synchronize": true,
    "migrationsRun": true,
