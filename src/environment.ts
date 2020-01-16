@@ -3,7 +3,7 @@ dotenv.config();
 
 export const { 
   NODE_ENV,
-  SERVER_PORT = 8443,
+  SERVER_PORT = 8080,
   WEB_PORT = 80,
   DB_URI,
   JWT_SECRET = 'secret',
