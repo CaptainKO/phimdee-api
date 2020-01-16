@@ -62,7 +62,7 @@ export class User extends BaseEntity {
   @UpdateDateColumn()
   updatedDate: Date;
 
-  async hashPassword(newPassword: string) {
+  private async hashPassword(newPassword: string) {
     this.salt = await genSalt(8);
     return await hash(newPassword, this.salt);
   }

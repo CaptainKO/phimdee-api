@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 import { getRepository } from "typeorm";
 import { validate } from "class-validator";
 
-import { User } from "../entity/user.entity";
+import { User } from "../database/entity/user.entity";
 import { Http401Error } from "src/util/httpErrors";
 import NotFoundException from "@exceptions/NotFoundException";
 import { BaseController } from "./base.controller";

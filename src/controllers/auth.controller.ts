@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 import * as jwt from "jsonwebtoken";
 import { validate } from "class-validator";
 
-import { User } from "../entity/user.entity";
+import { User } from "@entity/user.entity";
 import { JWT_SECRET } from "../environment";
 import { BaseController } from "./base.controller";
 import userRepository from "src/repository/user.repository";
@@ -69,8 +69,7 @@ class AuthController extends BaseController {
       return;
     }
 
-    //Validate de model (password length)
-    user.hashPassword(newPassword);
+  
     const errors = await validate(user);
     if (errors.length > 0) {
       res.status(400).send(errors);

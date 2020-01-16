@@ -20,7 +20,7 @@
             "es2017",
         ],
         "paths": {
-            "@entity/*": ["src/entity/*"],
+            "@entity/*": ["src/database/entity/*"],
             "@middlewares": ["src/middlewares/index"],
             "@middlewares/*": ["src/middlewares/*"],
             "@exceptions": ["src/exceptions/index"],

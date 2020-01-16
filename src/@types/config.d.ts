@@ -19,7 +19,7 @@ declare namespace Express {
   /**
    * overwrite user interfaces for request
    */
-  type IUser = import('../entity/user.entity').User
+  type IUser = import('../database/entity/user.entity').User
   export interface User extends IUser{}
 
   /**
